@@ -30,7 +30,7 @@ Then click +Generate+. This will result in a file called +starter.zip+ being dow
 
 . Optionally run your favorite of +gradle idea+ or +gradle eclipse+. Then open the project in your favorite editor or IDE of choice.
 
-. Add a runtime dependency on the http://www.h2database.com[H2 in-memory database] to +build.gradle+:
+. Add a runtime dependency on the http://hsqldb.org/[HyperSQL in-memory database] to +build.gradle+:
 +
 [source,groovy]
 ----
