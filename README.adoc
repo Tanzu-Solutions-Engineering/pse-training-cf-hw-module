@@ -9,6 +9,8 @@ Matt Stine <mstine@gopivotal.com>, Scott Frederick <sfrederick@gopivotal.com>
 
 This lab will guide you through building a basic ``Hello World'' style application. You will utilize a combination of Spring Boot, Spring Data, and Spring Cloud. You'll also leverage a large dataset to show the power of paging, sorting, and searching with Spring Data REST.
 
+This exercise is based on https://github.com/scottfrederick/spring-boot-cities which was created by Scott Frederick.
+
 == Steps
 
 === Getting Started
@@ -147,7 +149,7 @@ Next we'll import some data.
 
 === Importing Data
 
-. Add https://github.com/mstine/pse-training-cf-hw-module/blob/master/code/src/main/resources/import.sql to +src/main/resources+. This is a rather large data set containing all of the postal codes in the United States (and its territories). This file will automatically be picked up by Boot and run by Hibernate.
+. Add https://github.com/pivotalservices/pse-training-cf-hw-module/blob/master/code/src/main/resources/import.sql to +src/main/resources+. This is a rather large data set containing all of the postal codes in the United States (and its territories). This file will automatically be picked up by Boot and run by Hibernate.
 
 . Build the application:
 +
@@ -444,5 +446,6 @@ Date: Tue, 27 May 2014 19:59:58 GMT
 $ curl -i "localhost:8080/cities?size=5"
 $ curl -i "localhost:8080/cities?size=5&page=3"
 $ curl -i "localhost:8080/cities?sort=postalCode,desc"
+----
 +
 Next we'll add searching capabilities.
