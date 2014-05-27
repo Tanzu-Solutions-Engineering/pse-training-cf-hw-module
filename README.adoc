@@ -449,3 +449,270 @@ $ curl -i "localhost:8080/cities?sort=postalCode,desc"
 ----
 +
 Next we'll add searching capabilities.
+
+=== Adding Search
+
+. Let's add some additional finder methods to +CityRepository+:
++
+[source,java]
+----
+@RestResource(path = "name", rel = "name")
+    Page<City> findByNameIgnoreCase(@Param("q") String name, Pageable pageable);
+
+    @RestResource(path = "nameContains", rel = "nameContains")
+    Page<City> findByNameContainsIgnoreCase(@Param("q") String name, Pageable pageable);
+
+    @RestResource(path = "state", rel = "state")
+    Page<City> findByStateCodeIgnoreCase(@Param("q") String stateCode, Pageable pageable);
+
+    @RestResource(path = "postalCode", rel = "postalCode")
+    Page<City> findByPostalCode(@Param("q") String postalCode, Pageable pageable);
+----
+
+. Build the application:
++
+[source,bash]
+----
+$ gradle assemble
+----
+
+. Run the application:
++
+[source,bash]
+----
+$ java -jar build/libs/cities-0.0.1-SNAPSHOT.jar
+----
+
+. Access the application again using +curl+. Notice that hypermedia for a new +search+ endpoint has appeared.
++
+[source,bash]
+----
+$ curl -i "localhost:8080/cities"
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+X-Application-Context: application
+Content-Type: application/hal+json
+Transfer-Encoding: chunked
+Date: Tue, 27 May 2014 20:33:52 GMT
+
+{
+  "_links" : {
+    "next" : {
+      "href" : "http://localhost:8080/cities?page=1&size=20"
+    },
+    "self" : {
+      "href" : "http://localhost:8080/cities{?page,size,sort}",
+      "templated" : true
+    },
+    "search" : {
+      "href" : "http://localhost:8080/cities/search"    }
+  },
+(Remainder omitted...)
+----
+
+. Try accessing the new +search+ endpoint using +curl+:
++
+[source,bash]
+----
+ curl -i "localhost:8080/cities/search"
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+X-Application-Context: application
+Content-Type: application/hal+json
+Transfer-Encoding: chunked
+Date: Tue, 27 May 2014 20:38:32 GMT
+{
+  "_links" : {
+    "postalCode" : {
+      "href" : "http://localhost:8080/cities/search/postalCode{?q,page,size,sort}",
+      "templated" : true
+    },
+    "state" : {
+      "href" : "http://localhost:8080/cities/search/state{?q,page,size,sort}",
+      "templated" : true
+    },
+    "name" : {
+      "href" : "http://localhost:8080/cities/search/name{?q,page,size,sort}",
+      "templated" : true
+    },
+    "nameContains" : {
+      "href" : "http://localhost:8080/cities/search/nameContains{?q,page,size,sort}",
+      "templated" : true
+    }
+  }
+}
+----
++
+Note that we now have new search endpoints for each of the finders that we added!
+
+. Let's try a few of these endpoints. Feel free to substitute your own values for the parameters.
++
+[source,bash]
+----
+$ curl -i "http://localhost:8080/cities/search/postalCode?q=38672"
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+X-Application-Context: application
+Content-Type: application/hal+json
+Transfer-Encoding: chunked
+Date: Tue, 27 May 2014 20:40:13 GMT
+
+{
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/cities/search/postalCode?q=38672{&page,size,sort}",
+      "templated" : true
+    }
+  },
+  "_embedded" : {
+    "cities" : [ {
+      "name" : "SOUTHAVEN",
+      "county" : "DE SOTO",
+      "stateCode" : "MS",
+      "postalCode" : "38672",
+      "latitude" : "+34.947407",
+      "longitude" : "-089.925792",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/cities/17030"
+        }
+      }
+    } ]
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 1,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}
+
+$ curl -i "http://localhost:8080/cities/search/name?q=Nesbit"
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+X-Application-Context: application
+Content-Type: application/hal+json
+Transfer-Encoding: chunked
+Date: Tue, 27 May 2014 20:42:01 GMT
+
+{
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/cities/search/name?q=Nesbit{&page,size,sort}",
+      "templated" : true
+    }
+  },
+  "_embedded" : {
+    "cities" : [ {
+      "name" : "NESBIT",
+      "county" : "DE SOTO",
+      "stateCode" : "MS",
+      "postalCode" : "38651",
+      "latitude" : "+34.875133",
+      "longitude" : "-089.985853",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/cities/17015"
+        }
+      }
+    } ]
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 1,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}
+
+$ curl -i "http://localhost:8080/cities/search/nameContains?q=Palm+Beach&size=1"
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+X-Application-Context: application
+Content-Type: application/hal+json
+Transfer-Encoding: chunked
+Date: Tue, 27 May 2014 20:43:48 GMT
+
+{
+  "_links" : {
+    "next" : {
+      "href" : "http://localhost:8080/cities/search/nameContains?q=Palm+Beach&page=1&size=1"
+    },
+    "self" : {
+      "href" : "http://localhost:8080/cities/search/nameContains?q=Palm+Beach&size=1{&page,sort}",
+      "templated" : true
+    }
+  },
+  "_embedded" : {
+    "cities" : [ {
+      "name" : "WEST PALM BEACH",
+      "county" : "PALM BEACH",
+      "stateCode" : "FL",
+      "postalCode" : "33401",
+      "latitude" : "+26.672643",
+      "longitude" : "-080.070613",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/cities/14645"
+        }
+      }
+    } ]
+  },
+  "page" : {
+    "size" : 1,
+    "totalElements" : 23,
+    "totalPages" : 23,
+    "number" : 0
+  }
+}
+----
++
+Next let's take a look at a few of the ``production ready'' endpoints added by Spring Boot Actuator.
+
+=== Spring Boot Actuator
+
+Try out the following endpoints. We're not including the output here because it can be quite large:
+
+http://localhost:8080/beans:: Dumps all of the beans in the Spring context.
+http://localhost:8080/autoconfig:: Dumps all of the auto-configuraiton performed as part of application bootstrapping.
++
+Searching for +DataSource+ will show the +@Conditional+s causing the embedded DB to be created:
++
+[source,javascript]
+----
+"DataSourceAutoConfiguration" : [ {
+      "condition" : "OnClassCondition",
+      "message" : "@ConditionalOnClass classes found: org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType"
+    } ],
+    "DataSourceAutoConfiguration.JdbcTemplateConfiguration" : [ {
+      "condition" : "DataSourceAutoConfiguration.DatabaseCondition",
+      "message" : "existing auto database detected"
+    } ],
+    "DataSourceAutoConfiguration.JdbcTemplateConfiguration#jdbcTemplate" : [ {
+      "condition" : "OnBeanCondition",
+      "message" : "@ConditionalOnMissingBean (types: org.springframework.jdbc.core.JdbcOperations; SearchStrategy: all) found no beans"
+    } ],
+    "DataSourceAutoConfiguration.JdbcTemplateConfiguration#namedParameterJdbcTemplate" : [ {
+      "condition" : "OnBeanCondition",
+      "message" : "@ConditionalOnMissingBean (types: org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations; SearchStrategy: all) found no beans"
+    } ],
+    "DataSourceAutoConfiguration.TomcatConfiguration" : [ {
+      "condition" : "DataSourceAutoConfiguration.TomcatDatabaseCondition",
+      "message" : "found database driver org.hsqldb.jdbcDriver"
+    }, {
+      "condition" : "OnBeanCondition",
+      "message" : "@ConditionalOnMissingBean (types: javax.sql.DataSource; SearchStrategy: all) found no beans"
+    } ],
+    "DataSourceTransactionManagerAutoConfiguration" : [ {
+      "condition" : "OnClassCondition",
+      "message" : "@ConditionalOnClass classes found: org.springframework.jdbc.core.JdbcTemplate,org.springframework.transaction.PlatformTransactionManager"
+    } ],
+    "DataSourceTransactionManagerAutoConfiguration.TransactionManagementConfiguration" : [ {
+      "condition" : "OnBeanCondition",
+      "message" : "@ConditionalOnMissingBean (types: org.springframework.transaction.annotation.AbstractTransactionManagementConfiguration; SearchStrategy: all) found no beans"
+    } ],
+----
+
+http://localhost:8080/env:: Dumps the application's shell environment as well as all Java system properties.
+http://localhost:8080/metrics:: Dumps all metrics currently being collected by Actuator, primarily response time and access counts for endpoints.
+http://localhost:8080/mappings:: Dumps all URI request mappings and the controller methods to which they are mapped.
