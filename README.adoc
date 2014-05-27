@@ -1,0 +1,102 @@
+= PS@E Hello World Lab
+Matt Stine <mstine@gopivotal.com>, Scott Frederick <sfrederick@gopivotal.com>
+
+== Prerequisites
+
+* Gradle: Install via either http://brew.sh/[Homebrew] (+brew install gradle+) or http://gvmtool.net/[GVM].
+
+== Intro
+
+This lab will guide you through building a basic ``Hello World'' style application. You will utilize a combination of Spring Boot, Spring Data, and Spring Cloud. You'll also leverage a large dataset to show the power of paging, sorting, and searching with Spring Data REST.
+
+== Steps
+
+. Browse to http://start.spring.io[Spring Initializr] and complete the form as follows:
++
+Group:: org.example
+Artifact:: cities
+Name:: cities
+Description:: Demo project
+Package name:: org.example.cities
+Styles:: Actuator, JPA, Rest Repositories, Web
+Type:: Maven project
+
++
+Then click +Generate+. This will result in a file called +starter.zip+ being downloaded to your workstation.
+
+. Create a directory to house your code, and into that directory unzip +starter.zip+.
+
+. Optionally run your favorite of +gradle idea+ or +gradle eclipse+. Then open the project in your favorite editor or IDE of choice.
+
+. Add a runtime dependency on the http://www.h2database.com[H2 in-memory database] to +build.gradle+:
++
+[source,groovy]
+----
+dependencies {
+    // ...
+    runtime("org.hsqldb:hsqldb")
+}
+----
+
+. Create the package +org.example.cities.model+ and in that package create the class +City+. Into that file you can paste the following source code, which represents cities based on postal codes, global coordinates, etc:
++
+[source,java]
+----
+@Entity
+@Table(name="city")
+public class City implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue
+    private long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String county;
+
+    @Column(nullable = false)
+    private String stateCode;
+
+    @Column(nullable = false)
+    private String postalCode;
+
+    @Column
+    private String latitude;
+
+    @Column
+    private String longitude;
+}
+----
++
+Notice that we're using JPA annotations for everything. You'll need to use your favorite IDE's features to add the appropriate import statements as well as getters and setters.
+
+. Create the package +org.example.cities.repositories+ and in that package create the interface +CityRepository+. Paste the following code and add appropriate imports:
++
+[source,java]
+----
+@RepositoryRestResource(collectionResourceRel = "cities", path = "cities")
+public interface CityRepository extends PagingAndSortingRepository<City, Long> {
+
+    Page<City> findAll(Pageable pageable);
+}
+----
+
+. Add JPA and REST Repository support to +Application+ class.
++
+[source,java]
+----
+@Configuration
+@ComponentScan
+@EnableAutoConfiguration
+@EnableJpaRepositories // <---- Add this
+@Import(RepositoryRestMvcConfiguration.class) // <---- And this
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+----
