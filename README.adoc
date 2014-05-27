@@ -457,16 +457,16 @@ Next we'll add searching capabilities.
 [source,java]
 ----
 @RestResource(path = "name", rel = "name")
-    Page<City> findByNameIgnoreCase(@Param("q") String name, Pageable pageable);
+Page<City> findByNameIgnoreCase(@Param("q") String name, Pageable pageable);
 
-    @RestResource(path = "nameContains", rel = "nameContains")
-    Page<City> findByNameContainsIgnoreCase(@Param("q") String name, Pageable pageable);
+@RestResource(path = "nameContains", rel = "nameContains")
+Page<City> findByNameContainsIgnoreCase(@Param("q") String name, Pageable pageable);
 
-    @RestResource(path = "state", rel = "state")
-    Page<City> findByStateCodeIgnoreCase(@Param("q") String stateCode, Pageable pageable);
+@RestResource(path = "state", rel = "state")
+Page<City> findByStateCodeIgnoreCase(@Param("q") String stateCode, Pageable pageable);
 
-    @RestResource(path = "postalCode", rel = "postalCode")
-    Page<City> findByPostalCode(@Param("q") String postalCode, Pageable pageable);
+@RestResource(path = "postalCode", rel = "postalCode")
+Page<City> findByPostalCode(@Param("q") String postalCode, Pageable pageable);
 ----
 
 . Build the application:
