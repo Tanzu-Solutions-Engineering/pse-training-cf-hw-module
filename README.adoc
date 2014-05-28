@@ -720,7 +720,7 @@ http://localhost:8080/mappings:: Dumps all URI request mappings and the controll
 
 === Pushing to Cloud Foundry
 
-. Create an application manifest in +manifest.yml+ (substitute your application domain):
+. Create an application manifest in +manifest.yml+:
 +
 [source,yml]
 ----
@@ -729,7 +729,6 @@ applications:
 - name: cities
   memory: 512M
   instances: 1
-  domain: cf.deepsouthcloud.com
   path: build/libs/cities-0.0.1-SNAPSHOT.jar
   timeout: 180 # to give time for the data to import
 ----
@@ -783,7 +782,6 @@ applications:
 - name: cities
   memory: 512M
   instances: 1
-  domain: cf.deepsouthcloud.com
   path: build/libs/cities-0.0.1-SNAPSHOT.jar
   timeout: 180
   services:                        # Add
@@ -810,7 +808,7 @@ ext {
 }
 ----
 +
-Next, since we're using a release candidate for Spring Cloud, add the following to your +repositories" section:
+Next, since we're using a release candidate for Spring Cloud, add the following to your +repositories+ section:
 +
 [source,groovy]
 ----
