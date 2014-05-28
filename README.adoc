@@ -786,7 +786,7 @@ applications:
   domain: cf.deepsouthcloud.com
   path: build/libs/cities-0.0.1-SNAPSHOT.jar
   timeout: 180
-  services:                        # Add these
+  services:                        # Add
   - cities-db                      # these
   env:                             # four
     SPRING_PROFILES_ACTIVE: cloud  # lines!
