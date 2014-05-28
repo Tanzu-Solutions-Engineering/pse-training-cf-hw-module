@@ -4,6 +4,7 @@ Matt Stine <mstine@gopivotal.com>, Scott Frederick <sfrederick@gopivotal.com>
 == Prerequisites
 
 * Gradle: Install via either http://brew.sh/[Homebrew] (+brew install gradle+) or http://gvmtool.net/[GVM].
+* (Optional) MySQL Workbench: http://dev.mysql.com/downloads/workbench/
 
 == Intro
 
@@ -676,7 +677,7 @@ Try out the following endpoints. We're not including the output here because it 
 http://localhost:8080/beans:: Dumps all of the beans in the Spring context.
 http://localhost:8080/autoconfig:: Dumps all of the auto-configuraiton performed as part of application bootstrapping.
 +
-Searching for +DataSource+ will show the +@Conditional+s causing the embedded DB to be created:
+Searching for +DataSource+ will show the ++@Conditional++s causing the embedded DB to be created:
 +
 [source,javascript]
 ----
@@ -716,3 +717,178 @@ Searching for +DataSource+ will show the +@Conditional+s causing the embedded DB
 http://localhost:8080/env:: Dumps the application's shell environment as well as all Java system properties.
 http://localhost:8080/metrics:: Dumps all metrics currently being collected by Actuator, primarily response time and access counts for endpoints.
 http://localhost:8080/mappings:: Dumps all URI request mappings and the controller methods to which they are mapped.
+
+=== Pushing to Cloud Foundry
+
+. Create an application manifest in +manifest.yml+ (substitute your application domain):
++
+[source,yml]
+----
+---
+applications:
+- name: cities
+  memory: 512M
+  instances: 1
+  domain: cf.deepsouthcloud.com
+  path: build/libs/cities-0.0.1-SNAPSHOT.jar
+  timeout: 180 # to give time for the data to import
+----
+
+. Push to Cloud Foundry with a random route to prevent collisions:
++
+[source,bash]
+----
+$ cf push --random-route
+
+...
+
+1 of 1 instances running
+
+App started
+
+Showing health and status for app cities in org mstine-org / space demo as admin...
+OK
+
+requested state: started
+instances: 1/1
+usage: 512M x 1 instances
+urls: cities-undeliverable-iatrochemistry.cf.deepsouthcloud.com
+
+     state     since                    cpu    memory         disk
+#0   running   2014-05-27 04:15:05 PM   0.0%   433M of 512M   128.9M of 1G
+----
+
+. Access the application at the route provided by CF:
++
+[source,bash]
+----
+$ curl -i cities-undeliverable-iatrochemistry.cf.deepsouthcloud.com/cities
+----
+
+. At present we're still using the in-memory database. Let's connect to a MySQL database service provided by Cloud Foundry. First we'll create the service instance:
++
+[source,bash]
+----
+$ cf create-service p-mysql 100mb-dev cities-db
+Creating service cities-db in org mstine-org / space demo as admin...
+OK
+----
+
+. Next add the service to your application manifest, which will _bind_ the service to our application on the next push. We'll also add an environment variable to switch on the ``cloud'' profile,
++
+[source,bash]
+----
+---
+applications:
+- name: cities
+  memory: 512M
+  instances: 1
+  domain: cf.deepsouthcloud.com
+  path: build/libs/cities-0.0.1-SNAPSHOT.jar
+  timeout: 180
+  services:                        # Add these
+  - cities-db                      # these
+  env:                             # four
+    SPRING_PROFILES_ACTIVE: cloud  # lines!
+----
++
+You can also accomplish the service binding by explicitly binding the service at the command-line:
++
+[source,bash]
+----
+$ cf bind-service cities cities-db
+Binding service cities-db to app cities in org mstine-org / space demo as admin...
+OK
+----
+
+. Next we'll add the MySQL and Spring Cloud dependencies to our Gradle build. First, add the following just above the +apply+ statements in +build.gradle+:
++
+[source,groovy]
+----
+ext {
+    springCloudVersion = "1.0.0.RC2"
+}
+----
++
+Next, since we're using a release candidate for Spring Cloud, add the following to your +repositories" section:
++
+[source,groovy]
+----
+maven { url "http://repo.spring.io/milestone" }
+----
++
+Finally, comment or remove the +hsqldb+ line add add the following in the +dependencies+ section:
++
+[source,groovy]
+----
+compile("org.springframework.cloud:spring-cloud-spring-service-connector:${springCloudVersion}")
+compile("org.springframework.cloud:spring-cloud-cloudfoundry-connector:${springCloudVersion}")
+runtime("mysql:mysql-connector-java:5.1.25")
+----
++
+Since we've added new dependencies, re-run +gradle idea + or +gradle eclipse+ to have them added to the IDE classpath.
+
+. Next, let's create the package +org.example.cities.config+ and create in that package the class +CloudDataSourceConfig+. Add the following code:
++
+[source,java]
+----
+@Profile("cloud")
+@Configuration
+public class CloudDataSourceConfig extends AbstractCloudConfig {
+    @Bean
+    public DataSource dataSource() {
+        return connectionFactory().dataSource();
+    }
+}
+----
++
+As before, have the IDE import the appropriate dependencies. The +@Profile+ annotation will cause this class (which becomes Spring configuration when annotated as +@Configuration+) to be added to the configuration set because of the environment variable we added earlier. With this code, Spring Cloud will detect a bound service that is compatible with +DataSource+, read the credentials, and then create a +DataSource+ as appropriate (it will throw an exception otherwise).
+
+. Add the following to +src/main/resources/application.properties+ to cause Hibernate to create the database schema and import data at startup (his is done automatically for embedded databases, not for custom ++DataSource++s. Other Hibernate native properties can be set in a similar fashion):
++
+[source,java]
+----
+spring.jpa.hibernate.ddl-auto=create
+----
+
+. Build the application:
++
+[source,bash]
+----
+$ gradle assemble
+----
+
+. Run the application:
++
+[source,bash]
+----
+$ java -jar build/libs/cities-0.0.1-SNAPSHOT.jar
+----
+
+. Re-push the application:
++
+[source,bash]
+----
+$ cf push
+----
+
+. Take a look at the +env+ endpoint again to see the service bound in +VCAP_SERVICES+:
++
+[source,bash]
+----
+$ curl cities-undeliverable-iatrochemistry.cf.deepsouthcloud.com/env
+...
+"VCAP_SERVICES" : "{\"p-mysql\":[{\"name\":\"cities-db\",\"label\":\"p-mysql\",\"tags\":[\"mysql\",\"relational\"],\"plan\":\"100mb-dev\",\"credentials\":{\"hostname\":\"192.
+168.0.61\",\"port\":3306,\"name\":\"cf_84d72bc0_1fb9_427a_b8cc_a6cd7526f3c4\",\"username\":\"qRouPyXXexyXRRxo\",\"password\":\"JsF1GdLT1mN5WMDS\",\"uri\":\"mysql://qRouPyXXexyXRR
+xo:JsF1GdLT1mN5WMDS@192.168.0.61:3306/cf_84d72bc0_1fb9_427a_b8cc_a6cd7526f3c4?reconnect=true\",\"jdbcUrl\":\"jdbc:mysql://qRouPyXXexyXRRxo:JsF1GdLT1mN5WMDS@192.168.0.61:3306/cf_8
+4d72bc0_1fb9_427a_b8cc_a6cd7526f3c4\"}}]}",
+...
+----
+
+. Optionally, you can connect to your service from MySQL Workbench and take a look at the data:
++
+.Setting Up the Connection Data
+image::images/Setup_New_Connection.png[]
++
+.Looking at the City Table
+image::images/MySQL_Workbench.png[]

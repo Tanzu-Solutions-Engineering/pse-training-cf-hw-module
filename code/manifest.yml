@@ -1,0 +1,12 @@
+---
+applications:
+- name: cities
+  memory: 512M
+  instances: 1
+  domain: cf.deepsouthcloud.com
+  path: build/libs/cities-0.0.1-SNAPSHOT.jar
+  timeout: 180 # to give time for the data to import
+  services:
+  - cities-db
+  env:
+    SPRING_PROFILES_ACTIVE: cloud
