@@ -856,13 +856,6 @@ spring.jpa.hibernate.ddl-auto=create
 $ gradle assemble
 ----
 
-. Run the application:
-+
-[source,bash]
-----
-$ java -jar build/libs/cities-0.0.1-SNAPSHOT.jar
-----
-
 . Re-push the application:
 +
 [source,bash]
