@@ -24,7 +24,7 @@ Name:: cities
 Description:: Demo project
 Package name:: org.example.cities
 Styles:: Actuator, JPA, Rest Repositories, Web
-Type:: Maven project
+Type:: Gradle project
 
 +
 Then click +Generate+. This will result in a file called +starter.zip+ being downloaded to your workstation.
@@ -39,7 +39,7 @@ Then click +Generate+. This will result in a file called +starter.zip+ being dow
 ----
 dependencies {
     // ...
-    runtime("org.hsqldb:hsqldb")
+    compile("org.hsqldb:hsqldb")
 }
 ----
 
