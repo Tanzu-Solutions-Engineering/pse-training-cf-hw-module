@@ -879,7 +879,7 @@ xo:JsF1GdLT1mN5WMDS@192.168.0.61:3306/cf_84d72bc0_1fb9_427a_b8cc_a6cd7526f3c4?re
 . Optionally, you can connect to your service from MySQL Workbench and take a look at the data:
 +
 .Setting Up the Connection Data
-image::images/Setup_New_Connection.png[]
+image::images/Setup_New_Connection.png[width=800]
 +
 .Looking at the City Table
-image::images/MySQL_Workbench.png[]
+image::images/MySQL_Workbench.png[width=800]

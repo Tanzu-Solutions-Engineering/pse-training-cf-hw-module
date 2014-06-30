@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.7">
+<title><a href="mailto:PS@E">PS@E</a> Hello World Lab</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #777777;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+tt {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+.monospaced {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+/*
+ * Theme specific overrides of the preceding (asciidoc.css) CSS.
+ *
+ */
+body {
+  font-family: Garamond, Georgia, serif;
+  font-size: 17px;
+  color: #3E4349;
+  line-height: 1.3em;
+}
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Garmond, Georgia, serif;
+  font-weight: normal;
+  border-bottom-width: 0;
+  color: #3E4349;
+}
+div.title, caption.title { color: #596673; font-weight: bold; }
+h1 { font-size: 240%; }
+h2 { font-size: 180%; }
+h3 { font-size: 150%; }
+h4 { font-size: 130%; }
+h5 { font-size: 115%; }
+h6 { font-size: 100%; }
+#header h1 { margin-top: 0; }
+#toc {
+  color: #444444;
+  line-height: 1.5;
+  padding-top: 1.5em;
+}
+#toctitle {
+  font-size: 20px;
+}
+#toc a {
+    border-bottom: 1px dotted #999999;
+    color: #444444 !important;
+    text-decoration: none !important;
+}
+#toc a:hover {
+    border-bottom: 1px solid #6D4100;
+    color: #6D4100 !important;
+    text-decoration: none !important;
+}
+div.toclevel1 { margin-top: 0.2em; font-size: 16px; }
+div.toclevel2 { margin-top: 0.15em; font-size: 14px; }
+em, dt, td.hdlist1 { color: black; }
+strong { color: #3E4349; }
+a { color: #004B6B; text-decoration: none; border-bottom: 1px dotted #004B6B; }
+a:visited { color: #615FA0; border-bottom: 1px dotted #615FA0; }
+a:hover { color: #6D4100; border-bottom: 1px solid #6D4100; }
+div.tableblock > table, table.tableblock { border: 3px solid #E8E8E8; }
+th.tableblock, td.tableblock { border: 1px solid #E8E8E8; }
+ul > li > * { color: #3E4349; }
+pre, tt, .monospaced { font-family: Consolas,Menlo,'Deja Vu Sans Mono','Bitstream Vera Sans Mono',monospace; }
+tt, .monospaced { font-size: 0.9em; color: black;
+}
+div.exampleblock > div.content, div.sidebarblock > div.content, div.listingblock > div.content { border-width: 0 0 0 3px; border-color: #E8E8E8; }
+div.verseblock { border-left-width: 0; margin-left: 3em; }
+div.quoteblock { border-left-width: 3px; margin-left: 0; margin-right: 0;}
+div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
+@media screen {
+  body {
+    max-width: 50em; /* approximately 80 characters wide */
+    margin-left: 16em;
+  }
+
+  #toc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 13em;
+    padding: 0.5em;
+    padding-bottom: 1.5em;
+    margin: 0;
+    overflow: auto;
+    border-right: 3px solid #f8f8f8;
+    background-color: white;
+  }
+
+  #toc .toclevel1 {
+    margin-top: 0.5em;
+  }
+
+  #toc .toclevel2 {
+    margin-top: 0.25em;
+    display: list-item;
+    color: #aaaaaa;
+  }
+
+  #toctitle {
+    margin-top: 0.5em;
+  }
+}
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install(2);
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1><a href="mailto:PS@E">PS@E</a> Hello World Lab</h1>
+<span id="author">Matt Stine &lt;mstine@gopivotal.com&gt;, Scott Frederick &lt;sfrederick@gopivotal.com&gt;</span><br>
+<div id="toc">
+  <div id="toctitle">Table of Contents</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_prerequisites">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Gradle: Install via either <a href="http://brew.sh/">Homebrew</a> (<span class="monospaced">brew install gradle</span>) or <a href="http://gvmtool.net/">GVM</a>.
+</p>
+</li>
+<li>
+<p>
+(Optional) MySQL Workbench: <a href="http://dev.mysql.com/downloads/workbench/">http://dev.mysql.com/downloads/workbench/</a>
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_intro">Intro</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>This lab will guide you through building a basic &#8220;Hello World&#8221; style application. You will utilize a combination of Spring Boot, Spring Data, and Spring Cloud. You&#8217;ll also leverage a large dataset to show the power of paging, sorting, and searching with Spring Data REST.</p></div>
+<div class="paragraph"><p>This exercise is based on <a href="https://github.com/scottfrederick/spring-boot-cities">https://github.com/scottfrederick/spring-boot-cities</a> which was created by Scott Frederick.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps">Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_getting_started">Getting Started</h3>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Browse to <a href="http://start.spring.io">Spring Initializr</a> and complete the form as follows:
+</p>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+Group
+</dt>
+<dd>
+<p>
+org.example
+</p>
+</dd>
+<dt class="hdlist1">
+Artifact
+</dt>
+<dd>
+<p>
+cities
+</p>
+</dd>
+<dt class="hdlist1">
+Name
+</dt>
+<dd>
+<p>
+cities
+</p>
+</dd>
+<dt class="hdlist1">
+Description
+</dt>
+<dd>
+<p>
+Demo project
+</p>
+</dd>
+<dt class="hdlist1">
+Package name
+</dt>
+<dd>
+<p>
+org.example.cities
+</p>
+</dd>
+<dt class="hdlist1">
+Styles
+</dt>
+<dd>
+<p>
+Actuator, JPA, Rest Repositories, Web
+</p>
+</dd>
+<dt class="hdlist1">
+Type
+</dt>
+<dd>
+<p>
+Gradle project
+</p>
+</dd>
+</dl></div>
+<div class="paragraph"><p>Then click <span class="monospaced">Generate</span>. This will result in a file called <span class="monospaced">starter.zip</span> being downloaded to your workstation.</p></div>
+</li>
+<li>
+<p>
+Create a directory to house your code, and into that directory unzip <span class="monospaced">starter.zip</span>.
+</p>
+</li>
+<li>
+<p>
+Optionally run your favorite of <span class="monospaced">gradle idea</span> or <span class="monospaced">gradle eclipse</span>. Then open the project in your favorite editor or IDE of choice.
+</p>
+</li>
+<li>
+<p>
+Add a runtime dependency on the <a href="http://hsqldb.org/">HyperSQL in-memory database</a> to <span class="monospaced">build.gradle</span>:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>dependencies <span style="color: #FF0000">{</span>
+    <span style="font-style: italic"><span style="color: #9A1900">// ...</span></span>
+    <span style="font-weight: bold"><span style="color: #000000">compile</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"org.hsqldb:hsqldb"</span><span style="color: #990000">)</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+</li>
+<li>
+<p>
+Create the package <span class="monospaced">org.example.cities.model</span> and in that package create the class <span class="monospaced">City</span>. Into that file you can paste the following source code, which represents cities based on postal codes, global coordinates, etc:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>@Entity
+@<span style="font-weight: bold"><span style="color: #000000">Table</span></span><span style="color: #990000">(</span>name<span style="color: #990000">=</span><span style="color: #FF0000">"city"</span><span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">City</span> <span style="font-weight: bold"><span style="color: #0000FF">implements</span></span> Serializable <span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">private</span></span> <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> <span style="color: #009900">long</span> serialVersionUID <span style="color: #990000">=</span> <span style="color: #993399">1L</span><span style="color: #990000">;</span>
+
+    @Id
+    @GeneratedValue
+    <span style="font-weight: bold"><span style="color: #0000FF">private</span></span> <span style="color: #009900">long</span> id<span style="color: #990000">;</span>
+
+    @<span style="font-weight: bold"><span style="color: #000000">Column</span></span><span style="color: #990000">(</span>nullable <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">false</span></span><span style="color: #990000">)</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">private</span></span> <span style="color: #008080">String</span> name<span style="color: #990000">;</span>
+
+    @<span style="font-weight: bold"><span style="color: #000000">Column</span></span><span style="color: #990000">(</span>nullable <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">false</span></span><span style="color: #990000">)</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">private</span></span> <span style="color: #008080">String</span> county<span style="color: #990000">;</span>
+
+    @<span style="font-weight: bold"><span style="color: #000000">Column</span></span><span style="color: #990000">(</span>nullable <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">false</span></span><span style="color: #990000">)</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">private</span></span> <span style="color: #008080">String</span> stateCode<span style="color: #990000">;</span>
+
+    @<span style="font-weight: bold"><span style="color: #000000">Column</span></span><span style="color: #990000">(</span>nullable <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">false</span></span><span style="color: #990000">)</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">private</span></span> <span style="color: #008080">String</span> postalCode<span style="color: #990000">;</span>
+
+    @Column
+    <span style="font-weight: bold"><span style="color: #0000FF">private</span></span> <span style="color: #008080">String</span> latitude<span style="color: #990000">;</span>
+
+    @Column
+    <span style="font-weight: bold"><span style="color: #0000FF">private</span></span> <span style="color: #008080">String</span> longitude<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="paragraph"><p>Notice that we&#8217;re using JPA annotations for everything. You&#8217;ll need to use your favorite IDE&#8217;s features to add the appropriate import statements as well as getters and setters.</p></div>
+</li>
+<li>
+<p>
+Create the package <span class="monospaced">org.example.cities.repositories</span> and in that package create the interface <span class="monospaced">CityRepository</span>. Paste the following code and add appropriate imports:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>@<span style="font-weight: bold"><span style="color: #000000">RepositoryRestResource</span></span><span style="color: #990000">(</span>collectionResourceRel <span style="color: #990000">=</span> <span style="color: #FF0000">"cities"</span><span style="color: #990000">,</span> path <span style="color: #990000">=</span> <span style="color: #FF0000">"cities"</span><span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">interface</span></span> <span style="color: #008080">CityRepository</span> <span style="font-weight: bold"><span style="color: #0000FF">extends</span></span> PagingAndSortingRepository<span style="color: #990000">&lt;</span>City<span style="color: #990000">,</span> Long<span style="color: #990000">&gt;</span> <span style="color: #FF0000">{</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+</li>
+<li>
+<p>
+Add JPA and REST Repository support to <span class="monospaced">Application</span> class.
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>@Configuration
+@ComponentScan
+@EnableAutoConfiguration
+@EnableJpaRepositories <span style="font-style: italic"><span style="color: #9A1900">// &lt;---- Add this</span></span>
+@<span style="font-weight: bold"><span style="color: #000000">Import</span></span><span style="color: #990000">(</span>RepositoryRestMvcConfiguration<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span><span style="color: #990000">)</span> <span style="font-style: italic"><span style="color: #9A1900">// &lt;---- And this</span></span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Application</span> <span style="color: #FF0000">{</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">(</span>String<span style="color: #990000">[]</span> args<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+        SpringApplication<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">run</span></span><span style="color: #990000">(</span>Application<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span><span style="color: #990000">,</span> args<span style="color: #990000">);</span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+</li>
+<li>
+<p>
+Build the application:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ gradle assemble</tt></pre></div></div>
+</li>
+<li>
+<p>
+Run the application:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ java -jar build/libs/cities-<span style="color: #993399">0.0</span><span style="color: #990000">.</span><span style="color: #993399">1</span>-SNAPSHOT<span style="color: #990000">.</span>jar</tt></pre></div></div>
+</li>
+<li>
+<p>
+Access the application using <span class="monospaced">curl</span>. You&#8217;ll see that the primary endpoint automatically exposes the ability to page, size, and sort the response JSON. So what have you done? Created three classes and one build file, resulting in a fully-functional REST micro-service. The application&#8217;s <span class="monospaced">DataSource</span> is created automatically by Boot using the in-memory database because no other <span class="monospaced">DataSource</span> was detected in the project.
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ curl -i localhost<span style="color: #990000">:</span><span style="color: #993399">8080</span>/cities
+HTTP<span style="color: #990000">/</span><span style="color: #993399">1.1</span> <span style="color: #993399">200</span> OK
+Server<span style="color: #990000">:</span> Apache-Coyote<span style="color: #990000">/</span><span style="color: #993399">1.1</span>
+X-Application-Context<span style="color: #990000">:</span> application
+Content-Type<span style="color: #990000">:</span> application/hal<span style="color: #990000">+</span>json
+Transfer-Encoding<span style="color: #990000">:</span> chunked
+Date<span style="color: #990000">:</span> Tue<span style="color: #990000">,</span> <span style="color: #993399">27</span> May <span style="color: #993399">2014</span> <span style="color: #993399">19</span><span style="color: #990000">:</span><span style="color: #993399">34</span><span style="color: #990000">:</span><span style="color: #993399">45</span> GMT
+
+{
+  <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities{?page,size,sort}"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"templated"</span> <span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span>
+    }
+  }<span style="color: #990000">,</span>
+  <span style="color: #FF0000">"page"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"size"</span> <span style="color: #990000">:</span> <span style="color: #993399">20</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"totalElements"</span> <span style="color: #990000">:</span> <span style="color: #993399">0</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"totalPages"</span> <span style="color: #990000">:</span> <span style="color: #993399">0</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"number"</span> <span style="color: #990000">:</span> <span style="color: #993399">0</span>
+  }
+}</tt></pre></div></div>
+<div class="paragraph"><p>Next we&#8217;ll import some data.</p></div>
+</li>
+</ol></div>
+</div>
+<div class="sect2">
+<h3 id="_importing_data">Importing Data</h3>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Add <a href="https://github.com/pivotalservices/pse-training-cf-hw-module/blob/master/code/src/main/resources/import.sql">https://github.com/pivotalservices/pse-training-cf-hw-module/blob/master/code/src/main/resources/import.sql</a> to <span class="monospaced">src/main/resources</span>. This is a rather large data set containing all of the postal codes in the United States (and its territories). This file will automatically be picked up by Boot and run by Hibernate.
+</p>
+</li>
+<li>
+<p>
+Build the application:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ gradle assemble</tt></pre></div></div>
+</li>
+<li>
+<p>
+Run the application:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ java -jar build/libs/cities-<span style="color: #993399">0.0</span><span style="color: #990000">.</span><span style="color: #993399">1</span>-SNAPSHOT<span style="color: #990000">.</span>jar</tt></pre></div></div>
+</li>
+<li>
+<p>
+Access the application again using <span class="monospaced">curl</span>. Notice the appropriate hypermedia is included for next, previous, and self. You can also select pages and page size by utilizing <span class="monospaced">?size=n&amp;page=n</span> on the URL string. Finally, you can sort the data utilizing <span class="monospaced">?sort=fieldName</span>.
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -i localhost<span style="color: #990000">:</span><span style="color: #993399">8080</span>/cities
+HTTP<span style="color: #990000">/</span><span style="color: #993399">1.1</span> <span style="color: #993399">200</span> OK
+Server<span style="color: #990000">:</span> Apache-Coyote<span style="color: #990000">/</span><span style="color: #993399">1.1</span>
+X-Application-Context<span style="color: #990000">:</span> application
+Content-Type<span style="color: #990000">:</span> application/hal<span style="color: #990000">+</span>json
+Transfer-Encoding<span style="color: #990000">:</span> chunked
+Date<span style="color: #990000">:</span> Tue<span style="color: #990000">,</span> <span style="color: #993399">27</span> May <span style="color: #993399">2014</span> <span style="color: #993399">19</span><span style="color: #990000">:</span><span style="color: #993399">59</span><span style="color: #990000">:</span><span style="color: #993399">58</span> GMT
+
+{
+  <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"next"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities?page=1&amp;size=20"</span>
+    }<span style="color: #990000">,</span>
+    <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities{?page,size,sort}"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"templated"</span> <span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span>
+    }
+  }<span style="color: #990000">,</span>
+  <span style="color: #FF0000">"_embedded"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"cities"</span> <span style="color: #990000">:</span> <span style="color: #990000">[</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"HOLTSVILLE"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"SUFFOLK"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"NY"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00501"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+40.922326"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-072.637078"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/1"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"HOLTSVILLE"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"SUFFOLK"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"NY"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00544"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+40.922326"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-072.637078"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/2"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"ADJUNTAS"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"ADJUNTAS"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00601"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.165273"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-066.722583"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/3"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"AGUADA"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"AGUADA"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00602"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.393103"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-067.180953"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/4"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"AGUADILLA"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"AGUADILLA"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00603"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.455913"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-067.145780"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/5"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"AGUADILLA"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"AGUADILLA"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00604"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.493520"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-067.135883"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/6"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"AGUADILLA"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"AGUADILLA"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00605"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.465162"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-067.141486"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/7"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"MARICAO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"MARICAO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00606"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.172947"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-066.944111"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/8"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"ANASCO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"ANASCO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00610"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.288685"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-067.139696"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/9"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"ANGELES"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"UTUADO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00611"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.279531"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-066.802170"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/10"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"ARECIBO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"ARECIBO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00612"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.450674"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-066.698262"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/11"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"ARECIBO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"ARECIBO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00613"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.458093"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-066.732732"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/12"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"ARECIBO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"ARECIBO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00614"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.429675"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-066.674506"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/13"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"BAJADERO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"ARECIBO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00616"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.444792"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-066.640678"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/14"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"BARCELONETA"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"BARCELONETA"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00617"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.447092"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-066.544255"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/15"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"BOQUERON"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"CABO ROJO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00622"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+17.998531"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-067.187318"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/16"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"CABO ROJO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"CABO ROJO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00623"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.062201"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-067.149541"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/17"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PENUELAS"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PENUELAS"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00624"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.023535"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-066.726156"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/18"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"CAMUY"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"CAMUY"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00627"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.477891"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-066.854770"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/19"</span>
+        }
+      }
+    }<span style="color: #990000">,</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"CASTANER"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"LARES"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PR"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"00631"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+18.269187"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-066.864993"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/20"</span>
+        }
+      }
+    } <span style="color: #990000">]</span>
+  }<span style="color: #990000">,</span>
+  <span style="color: #FF0000">"page"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"size"</span> <span style="color: #990000">:</span> <span style="color: #993399">20</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"totalElements"</span> <span style="color: #990000">:</span> <span style="color: #993399">42741</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"totalPages"</span> <span style="color: #990000">:</span> <span style="color: #993399">2138</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"number"</span> <span style="color: #990000">:</span> <span style="color: #993399">0</span>
+  }
+}</tt></pre></div></div>
+</li>
+<li>
+<p>
+Try the following <span class="monospaced">curl</span> statements to see how the application behaves:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ curl -i <span style="color: #FF0000">"localhost:8080/cities?size=5"</span>
+$ curl -i <span style="color: #FF0000">"localhost:8080/cities?size=5&amp;page=3"</span>
+$ curl -i <span style="color: #FF0000">"localhost:8080/cities?sort=postalCode,desc"</span></tt></pre></div></div>
+<div class="paragraph"><p>Next we&#8217;ll add searching capabilities.</p></div>
+</li>
+</ol></div>
+</div>
+<div class="sect2">
+<h3 id="_adding_search">Adding Search</h3>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Let&#8217;s add some additional finder methods to <span class="monospaced">CityRepository</span>:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>@<span style="font-weight: bold"><span style="color: #000000">RestResource</span></span><span style="color: #990000">(</span>path <span style="color: #990000">=</span> <span style="color: #FF0000">"name"</span><span style="color: #990000">,</span> rel <span style="color: #990000">=</span> <span style="color: #FF0000">"name"</span><span style="color: #990000">)</span>
+<span style="color: #008080">Page&lt;City&gt;</span> <span style="font-weight: bold"><span style="color: #000000">findByNameIgnoreCase</span></span><span style="color: #990000">(</span>@<span style="font-weight: bold"><span style="color: #000000">Param</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"q"</span><span style="color: #990000">)</span> <span style="color: #008080">String</span> name<span style="color: #990000">,</span> <span style="color: #008080">Pageable</span> pageable<span style="color: #990000">);</span>
+
+@<span style="font-weight: bold"><span style="color: #000000">RestResource</span></span><span style="color: #990000">(</span>path <span style="color: #990000">=</span> <span style="color: #FF0000">"nameContains"</span><span style="color: #990000">,</span> rel <span style="color: #990000">=</span> <span style="color: #FF0000">"nameContains"</span><span style="color: #990000">)</span>
+<span style="color: #008080">Page&lt;City&gt;</span> <span style="font-weight: bold"><span style="color: #000000">findByNameContainsIgnoreCase</span></span><span style="color: #990000">(</span>@<span style="font-weight: bold"><span style="color: #000000">Param</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"q"</span><span style="color: #990000">)</span> <span style="color: #008080">String</span> name<span style="color: #990000">,</span> <span style="color: #008080">Pageable</span> pageable<span style="color: #990000">);</span>
+
+@<span style="font-weight: bold"><span style="color: #000000">RestResource</span></span><span style="color: #990000">(</span>path <span style="color: #990000">=</span> <span style="color: #FF0000">"state"</span><span style="color: #990000">,</span> rel <span style="color: #990000">=</span> <span style="color: #FF0000">"state"</span><span style="color: #990000">)</span>
+<span style="color: #008080">Page&lt;City&gt;</span> <span style="font-weight: bold"><span style="color: #000000">findByStateCodeIgnoreCase</span></span><span style="color: #990000">(</span>@<span style="font-weight: bold"><span style="color: #000000">Param</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"q"</span><span style="color: #990000">)</span> <span style="color: #008080">String</span> stateCode<span style="color: #990000">,</span> <span style="color: #008080">Pageable</span> pageable<span style="color: #990000">);</span>
+
+@<span style="font-weight: bold"><span style="color: #000000">RestResource</span></span><span style="color: #990000">(</span>path <span style="color: #990000">=</span> <span style="color: #FF0000">"postalCode"</span><span style="color: #990000">,</span> rel <span style="color: #990000">=</span> <span style="color: #FF0000">"postalCode"</span><span style="color: #990000">)</span>
+<span style="color: #008080">Page&lt;City&gt;</span> <span style="font-weight: bold"><span style="color: #000000">findByPostalCode</span></span><span style="color: #990000">(</span>@<span style="font-weight: bold"><span style="color: #000000">Param</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"q"</span><span style="color: #990000">)</span> <span style="color: #008080">String</span> postalCode<span style="color: #990000">,</span> <span style="color: #008080">Pageable</span> pageable<span style="color: #990000">);</span></tt></pre></div></div>
+</li>
+<li>
+<p>
+Build the application:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ gradle assemble</tt></pre></div></div>
+</li>
+<li>
+<p>
+Run the application:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ java -jar build/libs/cities-<span style="color: #993399">0.0</span><span style="color: #990000">.</span><span style="color: #993399">1</span>-SNAPSHOT<span style="color: #990000">.</span>jar</tt></pre></div></div>
+</li>
+<li>
+<p>
+Access the application again using <span class="monospaced">curl</span>. Notice that hypermedia for a new <span class="monospaced">search</span> endpoint has appeared.
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ curl -i <span style="color: #FF0000">"localhost:8080/cities"</span>
+HTTP<span style="color: #990000">/</span><span style="color: #993399">1.1</span> <span style="color: #993399">200</span> OK
+Server<span style="color: #990000">:</span> Apache-Coyote<span style="color: #990000">/</span><span style="color: #993399">1.1</span>
+X-Application-Context<span style="color: #990000">:</span> application
+Content-Type<span style="color: #990000">:</span> application/hal<span style="color: #990000">+</span>json
+Transfer-Encoding<span style="color: #990000">:</span> chunked
+Date<span style="color: #990000">:</span> Tue<span style="color: #990000">,</span> <span style="color: #993399">27</span> May <span style="color: #993399">2014</span> <span style="color: #993399">20</span><span style="color: #990000">:</span><span style="color: #993399">33</span><span style="color: #990000">:</span><span style="color: #993399">52</span> GMT
+
+{
+  <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"next"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities?page=1&amp;size=20"</span>
+    }<span style="color: #990000">,</span>
+    <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities{?page,size,sort}"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"templated"</span> <span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span>
+    }<span style="color: #990000">,</span>
+    <span style="color: #FF0000">"search"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/search"</span>    }
+  }<span style="color: #990000">,</span>
+<span style="color: #990000">(</span>Remainder omitted<span style="color: #990000">...)</span></tt></pre></div></div>
+</li>
+<li>
+<p>
+Try accessing the new <span class="monospaced">search</span> endpoint using <span class="monospaced">curl</span>:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt> curl -i <span style="color: #FF0000">"localhost:8080/cities/search"</span>
+HTTP<span style="color: #990000">/</span><span style="color: #993399">1.1</span> <span style="color: #993399">200</span> OK
+Server<span style="color: #990000">:</span> Apache-Coyote<span style="color: #990000">/</span><span style="color: #993399">1.1</span>
+X-Application-Context<span style="color: #990000">:</span> application
+Content-Type<span style="color: #990000">:</span> application/hal<span style="color: #990000">+</span>json
+Transfer-Encoding<span style="color: #990000">:</span> chunked
+Date<span style="color: #990000">:</span> Tue<span style="color: #990000">,</span> <span style="color: #993399">27</span> May <span style="color: #993399">2014</span> <span style="color: #993399">20</span><span style="color: #990000">:</span><span style="color: #993399">38</span><span style="color: #990000">:</span><span style="color: #993399">32</span> GMT
+{
+  <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/search/postalCode{?q,page,size,sort}"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"templated"</span> <span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span>
+    }<span style="color: #990000">,</span>
+    <span style="color: #FF0000">"state"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/search/state{?q,page,size,sort}"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"templated"</span> <span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span>
+    }<span style="color: #990000">,</span>
+    <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/search/name{?q,page,size,sort}"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"templated"</span> <span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span>
+    }<span style="color: #990000">,</span>
+    <span style="color: #FF0000">"nameContains"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/search/nameContains{?q,page,size,sort}"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"templated"</span> <span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span>
+    }
+  }
+}</tt></pre></div></div>
+<div class="paragraph"><p>Note that we now have new search endpoints for each of the finders that we added!</p></div>
+</li>
+<li>
+<p>
+Let&#8217;s try a few of these endpoints. Feel free to substitute your own values for the parameters.
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ curl -i <span style="color: #FF0000">"http://localhost:8080/cities/search/postalCode?q=38672"</span>
+HTTP<span style="color: #990000">/</span><span style="color: #993399">1.1</span> <span style="color: #993399">200</span> OK
+Server<span style="color: #990000">:</span> Apache-Coyote<span style="color: #990000">/</span><span style="color: #993399">1.1</span>
+X-Application-Context<span style="color: #990000">:</span> application
+Content-Type<span style="color: #990000">:</span> application/hal<span style="color: #990000">+</span>json
+Transfer-Encoding<span style="color: #990000">:</span> chunked
+Date<span style="color: #990000">:</span> Tue<span style="color: #990000">,</span> <span style="color: #993399">27</span> May <span style="color: #993399">2014</span> <span style="color: #993399">20</span><span style="color: #990000">:</span><span style="color: #993399">40</span><span style="color: #990000">:</span><span style="color: #993399">13</span> GMT
+
+{
+  <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/search/postalCode?q=38672{&amp;page,size,sort}"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"templated"</span> <span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span>
+    }
+  }<span style="color: #990000">,</span>
+  <span style="color: #FF0000">"_embedded"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"cities"</span> <span style="color: #990000">:</span> <span style="color: #990000">[</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"SOUTHAVEN"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"DE SOTO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"MS"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"38672"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+34.947407"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-089.925792"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/17030"</span>
+        }
+      }
+    } <span style="color: #990000">]</span>
+  }<span style="color: #990000">,</span>
+  <span style="color: #FF0000">"page"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"size"</span> <span style="color: #990000">:</span> <span style="color: #993399">20</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"totalElements"</span> <span style="color: #990000">:</span> <span style="color: #993399">1</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"totalPages"</span> <span style="color: #990000">:</span> <span style="color: #993399">1</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"number"</span> <span style="color: #990000">:</span> <span style="color: #993399">0</span>
+  }
+}
+
+$ curl -i <span style="color: #FF0000">"http://localhost:8080/cities/search/name?q=Nesbit"</span>
+HTTP<span style="color: #990000">/</span><span style="color: #993399">1.1</span> <span style="color: #993399">200</span> OK
+Server<span style="color: #990000">:</span> Apache-Coyote<span style="color: #990000">/</span><span style="color: #993399">1.1</span>
+X-Application-Context<span style="color: #990000">:</span> application
+Content-Type<span style="color: #990000">:</span> application/hal<span style="color: #990000">+</span>json
+Transfer-Encoding<span style="color: #990000">:</span> chunked
+Date<span style="color: #990000">:</span> Tue<span style="color: #990000">,</span> <span style="color: #993399">27</span> May <span style="color: #993399">2014</span> <span style="color: #993399">20</span><span style="color: #990000">:</span><span style="color: #993399">42</span><span style="color: #990000">:</span><span style="color: #993399">01</span> GMT
+
+{
+  <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/search/name?q=Nesbit{&amp;page,size,sort}"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"templated"</span> <span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span>
+    }
+  }<span style="color: #990000">,</span>
+  <span style="color: #FF0000">"_embedded"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"cities"</span> <span style="color: #990000">:</span> <span style="color: #990000">[</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"NESBIT"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"DE SOTO"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"MS"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"38651"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+34.875133"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-089.985853"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/17015"</span>
+        }
+      }
+    } <span style="color: #990000">]</span>
+  }<span style="color: #990000">,</span>
+  <span style="color: #FF0000">"page"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"size"</span> <span style="color: #990000">:</span> <span style="color: #993399">20</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"totalElements"</span> <span style="color: #990000">:</span> <span style="color: #993399">1</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"totalPages"</span> <span style="color: #990000">:</span> <span style="color: #993399">1</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"number"</span> <span style="color: #990000">:</span> <span style="color: #993399">0</span>
+  }
+}
+
+$ curl -i <span style="color: #FF0000">"http://localhost:8080/cities/search/nameContains?q=Palm+Beach&amp;size=1"</span>
+HTTP<span style="color: #990000">/</span><span style="color: #993399">1.1</span> <span style="color: #993399">200</span> OK
+Server<span style="color: #990000">:</span> Apache-Coyote<span style="color: #990000">/</span><span style="color: #993399">1.1</span>
+X-Application-Context<span style="color: #990000">:</span> application
+Content-Type<span style="color: #990000">:</span> application/hal<span style="color: #990000">+</span>json
+Transfer-Encoding<span style="color: #990000">:</span> chunked
+Date<span style="color: #990000">:</span> Tue<span style="color: #990000">,</span> <span style="color: #993399">27</span> May <span style="color: #993399">2014</span> <span style="color: #993399">20</span><span style="color: #990000">:</span><span style="color: #993399">43</span><span style="color: #990000">:</span><span style="color: #993399">48</span> GMT
+
+{
+  <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"next"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/search/nameContains?q=Palm+Beach&amp;page=1&amp;size=1"</span>
+    }<span style="color: #990000">,</span>
+    <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+      <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/search/nameContains?q=Palm+Beach&amp;size=1{&amp;page,sort}"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"templated"</span> <span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span>
+    }
+  }<span style="color: #990000">,</span>
+  <span style="color: #FF0000">"_embedded"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"cities"</span> <span style="color: #990000">:</span> <span style="color: #990000">[</span> {
+      <span style="color: #FF0000">"name"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"WEST PALM BEACH"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"county"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"PALM BEACH"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"stateCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"FL"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"postalCode"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"33401"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"latitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"+26.672643"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"longitude"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"-080.070613"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"_links"</span> <span style="color: #990000">:</span> {
+        <span style="color: #FF0000">"self"</span> <span style="color: #990000">:</span> {
+          <span style="color: #FF0000">"href"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"http://localhost:8080/cities/14645"</span>
+        }
+      }
+    } <span style="color: #990000">]</span>
+  }<span style="color: #990000">,</span>
+  <span style="color: #FF0000">"page"</span> <span style="color: #990000">:</span> {
+    <span style="color: #FF0000">"size"</span> <span style="color: #990000">:</span> <span style="color: #993399">1</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"totalElements"</span> <span style="color: #990000">:</span> <span style="color: #993399">23</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"totalPages"</span> <span style="color: #990000">:</span> <span style="color: #993399">23</span><span style="color: #990000">,</span>
+    <span style="color: #FF0000">"number"</span> <span style="color: #990000">:</span> <span style="color: #993399">0</span>
+  }
+}</tt></pre></div></div>
+<div class="paragraph"><p>Next let&#8217;s take a look at a few of the &#8220;production ready&#8221; endpoints added by Spring Boot Actuator.</p></div>
+</li>
+</ol></div>
+</div>
+<div class="sect2">
+<h3 id="_spring_boot_actuator">Spring Boot Actuator</h3>
+<div class="paragraph"><p>Try out the following endpoints. We&#8217;re not including the output here because it can be quite large:</p></div>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+<a href="http://localhost:8080/beans">http://localhost:8080/beans</a>
+</dt>
+<dd>
+<p>
+Dumps all of the beans in the Spring context.
+</p>
+</dd>
+<dt class="hdlist1">
+<a href="http://localhost:8080/autoconfig">http://localhost:8080/autoconfig</a>
+</dt>
+<dd>
+<p>
+Dumps all of the auto-configuraiton performed as part of application bootstrapping.
+</p>
+<div class="paragraph"><p>Searching for <span class="monospaced">DataSource</span> will show the <span class="monospaced">@Conditional</span>s causing the embedded DB to be created:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #FF0000">"DataSourceAutoConfiguration"</span> <span style="color: #990000">:</span> <span style="color: #990000">[</span> <span style="color: #FF0000">{</span>
+      <span style="color: #FF0000">"condition"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"OnClassCondition"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"message"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"@ConditionalOnClass classes found: org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType"</span>
+    <span style="color: #FF0000">}</span> <span style="color: #990000">],</span>
+    <span style="color: #FF0000">"DataSourceAutoConfiguration.JdbcTemplateConfiguration"</span> <span style="color: #990000">:</span> <span style="color: #990000">[</span> <span style="color: #FF0000">{</span>
+      <span style="color: #FF0000">"condition"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"DataSourceAutoConfiguration.DatabaseCondition"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"message"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"existing auto database detected"</span>
+    <span style="color: #FF0000">}</span> <span style="color: #990000">],</span>
+    <span style="color: #FF0000">"DataSourceAutoConfiguration.JdbcTemplateConfiguration#jdbcTemplate"</span> <span style="color: #990000">:</span> <span style="color: #990000">[</span> <span style="color: #FF0000">{</span>
+      <span style="color: #FF0000">"condition"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"OnBeanCondition"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"message"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"@ConditionalOnMissingBean (types: org.springframework.jdbc.core.JdbcOperations; SearchStrategy: all) found no beans"</span>
+    <span style="color: #FF0000">}</span> <span style="color: #990000">],</span>
+    <span style="color: #FF0000">"DataSourceAutoConfiguration.JdbcTemplateConfiguration#namedParameterJdbcTemplate"</span> <span style="color: #990000">:</span> <span style="color: #990000">[</span> <span style="color: #FF0000">{</span>
+      <span style="color: #FF0000">"condition"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"OnBeanCondition"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"message"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"@ConditionalOnMissingBean (types: org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations; SearchStrategy: all) found no beans"</span>
+    <span style="color: #FF0000">}</span> <span style="color: #990000">],</span>
+    <span style="color: #FF0000">"DataSourceAutoConfiguration.TomcatConfiguration"</span> <span style="color: #990000">:</span> <span style="color: #990000">[</span> <span style="color: #FF0000">{</span>
+      <span style="color: #FF0000">"condition"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"DataSourceAutoConfiguration.TomcatDatabaseCondition"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"message"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"found database driver org.hsqldb.jdbcDriver"</span>
+    <span style="color: #FF0000">}</span><span style="color: #990000">,</span> <span style="color: #FF0000">{</span>
+      <span style="color: #FF0000">"condition"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"OnBeanCondition"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"message"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"@ConditionalOnMissingBean (types: javax.sql.DataSource; SearchStrategy: all) found no beans"</span>
+    <span style="color: #FF0000">}</span> <span style="color: #990000">],</span>
+    <span style="color: #FF0000">"DataSourceTransactionManagerAutoConfiguration"</span> <span style="color: #990000">:</span> <span style="color: #990000">[</span> <span style="color: #FF0000">{</span>
+      <span style="color: #FF0000">"condition"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"OnClassCondition"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"message"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"@ConditionalOnClass classes found: org.springframework.jdbc.core.JdbcTemplate,org.springframework.transaction.PlatformTransactionManager"</span>
+    <span style="color: #FF0000">}</span> <span style="color: #990000">],</span>
+    <span style="color: #FF0000">"DataSourceTransactionManagerAutoConfiguration.TransactionManagementConfiguration"</span> <span style="color: #990000">:</span> <span style="color: #990000">[</span> <span style="color: #FF0000">{</span>
+      <span style="color: #FF0000">"condition"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"OnBeanCondition"</span><span style="color: #990000">,</span>
+      <span style="color: #FF0000">"message"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"@ConditionalOnMissingBean (types: org.springframework.transaction.annotation.AbstractTransactionManagementConfiguration; SearchStrategy: all) found no beans"</span>
+    <span style="color: #FF0000">}</span> <span style="color: #990000">],</span></tt></pre></div></div>
+</dd>
+<dt class="hdlist1">
+<a href="http://localhost:8080/env">http://localhost:8080/env</a>
+</dt>
+<dd>
+<p>
+Dumps the application&#8217;s shell environment as well as all Java system properties.
+</p>
+</dd>
+<dt class="hdlist1">
+<a href="http://localhost:8080/metrics">http://localhost:8080/metrics</a>
+</dt>
+<dd>
+<p>
+Dumps all metrics currently being collected by Actuator, primarily response time and access counts for endpoints.
+</p>
+</dd>
+<dt class="hdlist1">
+<a href="http://localhost:8080/mappings">http://localhost:8080/mappings</a>
+</dt>
+<dd>
+<p>
+Dumps all URI request mappings and the controller methods to which they are mapped.
+</p>
+</dd>
+</dl></div>
+</div>
+<div class="sect2">
+<h3 id="_pushing_to_cloud_foundry">Pushing to Cloud Foundry</h3>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Create an application manifest in <span class="monospaced">manifest.yml</span>:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">---</span>
+<span style="font-weight: bold"><span style="color: #008080">applications:</span></span>
+<span style="color: #990000">-</span> name<span style="color: #990000">:</span> cities
+  memory<span style="color: #990000">:</span> 512M
+  instances<span style="color: #990000">:</span> <span style="color: #993399">1</span>
+  path<span style="color: #990000">:</span> build<span style="color: #990000">/</span>libs<span style="color: #990000">/</span>cities<span style="color: #990000">-</span><span style="color: #993399">0.0</span><span style="color: #990000">.</span><span style="color: #993399">1</span><span style="color: #990000">-</span>SNAPSHOT<span style="color: #990000">.</span>jar
+  timeout<span style="color: #990000">:</span> <span style="color: #993399">180</span> # to give time <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> the data to import</tt></pre></div></div>
+</li>
+<li>
+<p>
+Push to Cloud Foundry with a random route to prevent collisions:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ cf push --random-route
+
+<span style="color: #990000">...</span>
+
+<span style="color: #993399">1</span> of <span style="color: #993399">1</span> instances running
+
+App started
+
+Showing health and status <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> app cities <span style="font-weight: bold"><span style="color: #0000FF">in</span></span> org mstine-org <span style="color: #990000">/</span> space demo as admin<span style="color: #990000">...</span>
+OK
+
+requested state<span style="color: #990000">:</span> started
+instances<span style="color: #990000">:</span> <span style="color: #993399">1</span><span style="color: #990000">/</span><span style="color: #993399">1</span>
+usage<span style="color: #990000">:</span> 512M x <span style="color: #993399">1</span> instances
+urls<span style="color: #990000">:</span> cities-undeliverable-iatrochemistry<span style="color: #990000">.</span>cf<span style="color: #990000">.</span>deepsouthcloud<span style="color: #990000">.</span>com
+
+     state     since                    cpu    memory         disk
+<span style="font-style: italic"><span style="color: #9A1900">#0   running   2014-05-27 04:15:05 PM   0.0%   433M of 512M   128.9M of 1G</span></span></tt></pre></div></div>
+</li>
+<li>
+<p>
+Access the application at the route provided by CF:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ curl -i cities-undeliverable-iatrochemistry<span style="color: #990000">.</span>cf<span style="color: #990000">.</span>deepsouthcloud<span style="color: #990000">.</span>com/cities</tt></pre></div></div>
+</li>
+<li>
+<p>
+At present we&#8217;re still using the in-memory database. Let&#8217;s connect to a MySQL database service provided by Cloud Foundry. First we&#8217;ll create the service instance:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ cf create-service p-mysql 100mb-dev cities-db
+Creating service cities-db <span style="font-weight: bold"><span style="color: #0000FF">in</span></span> org mstine-org <span style="color: #990000">/</span> space demo as admin<span style="color: #990000">...</span>
+OK</tt></pre></div></div>
+</li>
+<li>
+<p>
+Next add the service to your application manifest, which will <em>bind</em> the service to our application on the next push. We&#8217;ll also add an environment variable to switch on the &#8220;cloud&#8221; profile,
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>---
+applications<span style="color: #990000">:</span>
+- name<span style="color: #990000">:</span> cities
+  memory<span style="color: #990000">:</span> 512M
+  instances<span style="color: #990000">:</span> <span style="color: #993399">1</span>
+  path<span style="color: #990000">:</span> build/libs/cities-<span style="color: #993399">0.0</span><span style="color: #990000">.</span><span style="color: #993399">1</span>-SNAPSHOT<span style="color: #990000">.</span>jar
+  timeout<span style="color: #990000">:</span> <span style="color: #993399">180</span>
+  services<span style="color: #990000">:</span>                        <span style="font-style: italic"><span style="color: #9A1900"># Add</span></span>
+  - cities-db                      <span style="font-style: italic"><span style="color: #9A1900"># these</span></span>
+  env<span style="color: #990000">:</span>                             <span style="font-style: italic"><span style="color: #9A1900"># four</span></span>
+    SPRING_PROFILES_ACTIVE<span style="color: #990000">:</span> cloud  <span style="font-style: italic"><span style="color: #9A1900"># lines!</span></span></tt></pre></div></div>
+<div class="paragraph"><p>You can also accomplish the service binding by explicitly binding the service at the command-line:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ cf bind-service cities cities-db
+Binding service cities-db to app cities <span style="font-weight: bold"><span style="color: #0000FF">in</span></span> org mstine-org <span style="color: #990000">/</span> space demo as admin<span style="color: #990000">...</span>
+OK</tt></pre></div></div>
+</li>
+<li>
+<p>
+Next we&#8217;ll add the MySQL and Spring Cloud dependencies to our Gradle build. First, add the following just above the <span class="monospaced">apply</span> statements in <span class="monospaced">build.gradle</span>:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>ext <span style="color: #FF0000">{</span>
+    springCloudVersion <span style="color: #990000">=</span> <span style="color: #FF0000">"1.0.0.RC2"</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="paragraph"><p>Next, since we&#8217;re using a release candidate for Spring Cloud, add the following to your <span class="monospaced">repositories</span> section:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>maven <span style="color: #FF0000">{</span> url <span style="color: #FF0000">"http://repo.spring.io/milestone"</span> <span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="paragraph"><p>Finally, comment or remove the <span class="monospaced">hsqldb</span> line add add the following in the <span class="monospaced">dependencies</span> section:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000000">compile</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"org.springframework.cloud:spring-cloud-spring-service-connector:${springCloudVersion}"</span><span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">compile</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"org.springframework.cloud:spring-cloud-cloudfoundry-connector:${springCloudVersion}"</span><span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">runtime</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"mysql:mysql-connector-java:5.1.25"</span><span style="color: #990000">)</span></tt></pre></div></div>
+<div class="paragraph"><p>Since we&#8217;ve added new dependencies, re-run <span class="monospaced">gradle idea + or +gradle eclipse</span> to have them added to the IDE classpath.</p></div>
+</li>
+<li>
+<p>
+Next, let&#8217;s create the package <span class="monospaced">org.example.cities.config</span> and create in that package the class <span class="monospaced">CloudDataSourceConfig</span>. Add the following code:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>@<span style="font-weight: bold"><span style="color: #000000">Profile</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"cloud"</span><span style="color: #990000">)</span>
+@Configuration
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">CloudDataSourceConfig</span> <span style="font-weight: bold"><span style="color: #0000FF">extends</span></span> AbstractCloudConfig <span style="color: #FF0000">{</span>
+    @Bean
+    <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="color: #008080">DataSource</span> <span style="font-weight: bold"><span style="color: #000000">dataSource</span></span><span style="color: #990000">()</span> <span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="font-weight: bold"><span style="color: #000000">connectionFactory</span></span><span style="color: #990000">().</span><span style="font-weight: bold"><span style="color: #000000">dataSource</span></span><span style="color: #990000">();</span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="paragraph"><p>As before, have the IDE import the appropriate dependencies. The <span class="monospaced">@Profile</span> annotation will cause this class (which becomes Spring configuration when annotated as <span class="monospaced">@Configuration</span>) to be added to the configuration set because of the environment variable we added earlier. With this code, Spring Cloud will detect a bound service that is compatible with <span class="monospaced">DataSource</span>, read the credentials, and then create a <span class="monospaced">DataSource</span> as appropriate (it will throw an exception otherwise).</p></div>
+</li>
+<li>
+<p>
+Add the following to <span class="monospaced">src/main/resources/application.properties</span> to cause Hibernate to create the database schema and import data at startup (this is done automatically for embedded databases, not for custom <span class="monospaced">DataSource</span>s). Other Hibernate native properties can be set in a similar fashion:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>spring<span style="color: #990000">.</span>jpa<span style="color: #990000">.</span>hibernate<span style="color: #990000">.</span>ddl<span style="color: #990000">-</span>auto<span style="color: #990000">=</span>create</tt></pre></div></div>
+</li>
+<li>
+<p>
+Build the application:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ gradle assemble</tt></pre></div></div>
+</li>
+<li>
+<p>
+Re-push the application:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ cf push</tt></pre></div></div>
+</li>
+<li>
+<p>
+Take a look at the <span class="monospaced">env</span> endpoint again to see the service bound in <span class="monospaced">VCAP_SERVICES</span>:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ curl cities-undeliverable-iatrochemistry<span style="color: #990000">.</span>cf<span style="color: #990000">.</span>deepsouthcloud<span style="color: #990000">.</span>com/env
+<span style="color: #990000">...</span>
+<span style="color: #FF0000">"VCAP_SERVICES"</span> <span style="color: #990000">:</span> <span style="color: #FF0000">"{</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">p-mysql</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">:[{</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">name</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">:</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">cities-db</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">,</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">label</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">:</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">p-mysql</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">,</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">tags</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">:[</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">mysql</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">,</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">relational</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">],</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">plan</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">:</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">100mb-dev</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">,</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">credentials</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">:{</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">hostname</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">:</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">192.</span>
+<span style="color: #FF0000">168.0.61</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">,</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">port</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">:3306,</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">name</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">:</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">cf_84d72bc0_1fb9_427a_b8cc_a6cd7526f3c4</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">,</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">username</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">:</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">qRouPyXXexyXRRxo</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">,</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">password</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">:</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">JsF1GdLT1mN5WMDS</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">,</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">uri</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">:</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">mysql://qRouPyXXexyXRR</span>
+<span style="color: #FF0000">xo:JsF1GdLT1mN5WMDS@192.168.0.61:3306/cf_84d72bc0_1fb9_427a_b8cc_a6cd7526f3c4?reconnect=true</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">,</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">jdbcUrl</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">:</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">jdbc:mysql://qRouPyXXexyXRRxo:JsF1GdLT1mN5WMDS@192.168.0.61:3306/cf_8</span>
+<span style="color: #FF0000">4d72bc0_1fb9_427a_b8cc_a6cd7526f3c4</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">}}]}"</span><span style="color: #990000">,</span>
+<span style="color: #990000">...</span></tt></pre></div></div>
+</li>
+<li>
+<p>
+Optionally, you can connect to your service from MySQL Workbench and take a look at the data:
+</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/Setup_New_Connection.png" alt="images/Setup_New_Connection.png" width="800">
+</div>
+<div class="title">Figure 1. Setting Up the Connection Data</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MySQL_Workbench.png" alt="images/MySQL_Workbench.png" width="800">
+</div>
+<div class="title">Figure 2. Looking at the City Table</div>
+</div>
+</li>
+</ol></div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr></div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2014-06-30 12:14:04 BST
+</div>
+</div>
+</body>
+</html>
